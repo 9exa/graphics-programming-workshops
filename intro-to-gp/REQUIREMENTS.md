@@ -18,7 +18,7 @@ Come join us for CGS's first bespoke Computer Graphics workshop: ***Introduction
 :robot: A c++ Compiler
 Depends on your operating system
 - Windows
--- You're going to need to install [Visual Studio (VS)](https://visualstudio.microsoft.com/downloads/). Installing VS also involves installing the VS installer. Launch and the the "Desktop development with C++" package
+-- You're going to need to install [Visual Studio (VS)](https://visualstudio.microsoft.com/downloads/). Installing VS also involves installing the VS installer. Launch it and add the "Desktop development with C++" package
 -- Alternatively you can look into MinGW via MSys2 (Not Recommended)
 - Linux
 -- Most distros have some form of gcc/clang built-in. To check open the terminal and enter `g++ --version` or `clang --version`
@@ -26,19 +26,32 @@ Depends on your operating system
 -- Most Macs have some form of clang built-in. To check open the terminal and enter `clang --version` 
 :C: The CMake build tool
 :book: Libraries
+For the sake of your sanity long term, I would recommend you actually use a packagemanager to install the libraries below.
+- If you are using a UNIX based OS, chances are you're already familiar with the built-in package manager
+```brew install glew glfw glm```
+```sudo apt install libglew-dev libglfw3-dev libglm-dev```
+```sudo pacman install glew glfw glm```
+ect.
+
+On Windows you can install [vcpkg](https://github.com/microsoft/vcpkg?tab=readme-ov-file). 
+1. Clone the [repo](https://github.com/microsoft/vcpkg?tab=readme-ov-file)
+2. Enter it and run `.\bootstrap-vcpkg.bat` (or `.sh`). 
+3. Add the *path_to_vcpkg_repo* to your [PATH environment variable]("https://www.thewindowsclub.com/how-to-add-edit-a-path-variable-in-windows"). 
+4. While there, set the environment variable VCPKG_ROOT to *path_to_vcpkg_repo*
+
+Otherwise you'll have to download the libraries manually.
 - [glew](https://glew.sourceforge.net/) (The latest version should be fine)
 - [glm](https://github.com/g-truc/glm)
 - [glfw](https://www.glfw.org/download) (The binaries will be fine)
+
+You then need to copy the contents of glew and glfw's `include` folder and the glm repos `glm` folder into `third-party/include`.
+Next copy the copy the contents of glew and glfw's `lib` folder into `third-part/lib`.
 
 :computer: Developement environment
 - [Visual Studio Code (VSCode)](https://visualstudio.microsoft.com/downloads/) (Distinct from Visual Studio)
 -- You should also install the C/C++ extensions
 - Or your IDE or choice!
 
-If you're using a Unix derived system, your system is probably using a a *package manager* (e.g. *brew* or *apt*). For your long term sanity, it might be worthwhile figuring out how to install the above packages through it. 
-Windows also has a package manager specifically for c/c++ packages called [vcpkg](https://github.com/microsoft/vcpkg)
-
-Otherwise if you are downloading the libraries manually, you will have to place them in a place the project will look
 
 ### Workshop Repository
 TBA
