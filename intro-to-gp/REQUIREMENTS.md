@@ -6,16 +6,17 @@ But now, they will wonder no longer, for the archvists here at UNSW Computer Gra
 Come join us for CGS's first bespoke Computer Graphics workshop: ***Introduction to Graphics Programming with OpenGL***.
 
 :map: Location: Online (Here on this server!)
-:calender: Date: Thursday 12th June 2025
+:calender: Date: Thursday 19th June 2025
 :clock: Time: 6-8PM
 
 ## Things you'll need to bring
 
 :book: Assumed knowledge
 - COMP1511 level knowledge of the **C programming**. This workshop will be in **C++** but we'll avoid using it's advanced language features.
-- The ability to clone a git repo
 
-:robot: A c++ Compiler
+:robot: [Git](https://git-scm.com/downloads) and the ability to clone a repository from GitHub 
+
+:tools: A c++ Compiler
 Depends on your operating system
 - Windows
 -- You're going to need to install [Visual Studio (VS)](https://visualstudio.microsoft.com/downloads/). Installing VS also involves installing the VS installer. Launch it and add the "Desktop development with C++" package
@@ -53,8 +54,8 @@ Next copy the copy the contents of glew and glfw's `lib` folder into `third-part
 - Or your IDE or choice!
 
 
-### Workshop Repository
-TBA
+### Workshop [Repository](https://github.com/9exa/graphics-programming-workshops/tree/main/intro-to-gp)
+
 
 To ensure that your environment is set up correctly, download the workshop repository, cd into `intro-to-gp/workshop_part0_starter` and enter
 ```
