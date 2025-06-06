@@ -4,6 +4,7 @@
 #include <sstream>
 #include <glm/glm.hpp>
 #include <iostream>
+#include <array>
 #include <chrono>
 
 using namespace glm;
@@ -134,7 +135,7 @@ int main() {
     vec3 green = { 0.0, 1.0f, 0.0 };
     vec3 blue = { 0.0f, 0.0f, 1.0f };
     vec3 purple = { 0.4f, 0.05f, 0.6f };
-    VertexData vertices[] = { 
+    const std::array vertices = { 
 		VertexData({ 0.5f, 0.5f, 0.0f }, red), // Upper left corner
 		VertexData({ 0.5f, -0.5, 0.0f }, blue), // Lower right corner
 		VertexData({ -0.5f, 0.5f, 0.0f }, purple), // Upper right corner
@@ -142,10 +143,10 @@ int main() {
     };
     size_t n_vertices = sizeof(vertices) / sizeof(VertexData);
     
-    VertexIndex indices[] = {
+    const std::array<VertexIndex, 2> indices = {{
         { 0, 1, 2 },
         { 1, 2, 3 }
-    };
+    }};
 
 	// Create reference containers for the Vartex Array Object and the Vertex Buffer Object
 	GLuint VAO, VBO, EBO;
@@ -161,11 +162,11 @@ int main() {
 	// Bind the VBO specifying it's a GL_ARRAY_BUFFER
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	// Introduce the vertices into the VBO
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices.data(), GL_STATIC_DRAW);
 
     // Bind the EBO specifying it's a GL_ELEMENT_ARRAY_BUFFER
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices.data(), GL_STATIC_DRAW);
 
 
 	// Configure the Vertex Attribute so that OpenGL knows how to read the VBO
@@ -207,7 +208,7 @@ int main() {
 
 
         // Draw the triangles using vertexData and Indices with the GL_TRIANGLES primitive
-		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, (void *) indices);
+		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, (void *) indices.data());
 
         // Swap the buffers
         glfwSwapBuffers(window);
