@@ -34,10 +34,6 @@ struct VertexData {
     VertexData(vec3 pos, vec3 col): pos(pos), col(col) {}
 };
 
-/// The indices of the vertex of a tri
-typedef GLuint VertexIndex[3];
-
-
 int setupOpenGL() {
 	// We're using OpenGL 4.6
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -135,26 +131,20 @@ int main() {
     vec3 blue = { 0.0f, 0.0f, 1.0f };
     vec3 purple = { 0.4f, 0.05f, 0.6f };
     const std::array vertices = { 
-		VertexData({ 0.5f, 0.5f, 0.0f }, red), // Upper left corner
+		VertexData({ 0.5f, 0.5f, 0.0f }, red), // Upper right corner
 		VertexData({ 0.5f, -0.5, 0.0f }, blue), // Lower right corner
-		VertexData({ -0.5f, 0.5f, 0.0f }, purple), // Upper right corner
-		VertexData({ -0.5f, 0.5f, 0.0f }, purple), // Upper right corner
+		VertexData({ -0.5f, 0.5f, 0.0f }, purple), // Upper left corner
+		VertexData({ -0.5f, 0.5f, 0.0f }, purple), // Upper left corner
 		VertexData({ 0.5f, -0.5, 0.0f }, blue), // Lower right corner
 		VertexData({ -0.5f, -0.5f, 0.0f }, green), // Lower left corner
     };
     
-    VertexIndex indices[] = {
-        { 0, 1, 2 },
-        { 1, 2, 3 }
-    };
-
 	// Create reference containers for the Vartex Array Object and the Vertex Buffer Object
-	GLuint VAO, VBO, EBO;
+	GLuint VAO, VBO;
 
 	// Generate the VAO and VBO with only 1 object each
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
 
 	// Make the VAO the current Vertex Array Object by binding it
 	glBindVertexArray(VAO);
@@ -203,7 +193,6 @@ int main() {
     // Delete all gl objects
     glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
-    glDeleteBuffers(1, &EBO);
 	glDeleteProgram(shader_program);
 
     // Delete the shaders. They're useless now in the CPU
